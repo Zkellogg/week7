@@ -1,20 +1,20 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
-
+let tempTodoList = []
 let todoList = [
     
-    {
-    id: 1,
-    title: 'clean fridge',
-    priority: 'low',
-    date: '08-16-2021'},
-    {
-    id: 2,
-    title: 'clean room',
-    priority: 'high',
-    date: '08-16-2021'  
-    }
+    // {
+    // id: 1,
+    // title: 'clean fridge',
+    // priority: 'low',
+    // date: '08-16-2021'},
+    // {
+    // id: 2,
+    // title: 'clean room',
+    // priority: 'high',
+    // date: '08-16-2021'  
+    // }
 ]
 
 app.use(cors())
@@ -25,7 +25,7 @@ app.get("/", (req,res) => {
 })
 
 app.post("/", (req,res) => {
-    const id = length(todoList)
+    const id = todoList.length + 1
     const title = req.body.title
     const priority = req.body.priority
     const date = req.body.date
@@ -42,10 +42,14 @@ app.post("/", (req,res) => {
 app.delete("/:id", (req,res) => {
  const{id} = req.params
  const deleted = todoList.find(item => item.id == id)
+ console.log(deleted);
  if (deleted){
-todoList = todoList.filter(item => item.id !== id)
+todoList = todoList.filter(item => item.id != id)
+// console.log(tempTodoList);
+res.status(200).json(deleted)
+return todoList
  } else {
-    res.json({message: "Item does not exist"})
+    res.json({message: 'Item does not exist'})
  }
 })
 
