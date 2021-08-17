@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Document</title>
+</head>
+<body>
+<form method="POST" action="/add-trip">
+    <input type="text" name="title" placeholder="Trip Title">
+    <input type="url" name="image" placeholder="Image URL">
+    <input type="date" name="DOD" placeholder="Date of Depature">
+    <input type="date" name="DOR" placeholder="Date of Return">
+    <button>Save</button>
+</form>
+<form method="POST" action="/update-trip">
+    <input type="id" name="id" placeholder="Trip ID you wish to update">
+    <input type="text" name="title" placeholder="Trip Title">
+    <input type="url" name="image" placeholder="Image URL">
+    <input type="date" name="DOD" placeholder="Date of Depature">
+    <input type="date" name="DOR" placeholder="Date of Return">
+    <button>Save</button>
+</form>
+
+
+    <ul>
+        {{#allTrips}}
+            <form method="POST" action="/delete-trip">
+            <li>TRIP ID: {{id}}</li>
+
+            <li>
+                Trip Title: {{title}}
+            </li>
+            <li>
+                Image URL: {{image}}
+            </li>
+             <li>
+               Date of Depature: {{DOD}}
+            </li>
+             <li>
+               Date of Return: {{DOR}}
+            </li>
+            <li><input type='hidden' value = {{id}} name="id"/></li>
+            <li><button>Delete</button>
+            </form>
+
+        {{/allTrips}}
+    </ul>
+</body>
+</html>

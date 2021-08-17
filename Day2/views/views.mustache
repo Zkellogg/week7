@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        {{#allTrips}}
+        <form method="POST" action="/delete-trip">
+            <li>TRIP ID: {{id}}</li>
+
+            <li>
+                Trip Title: {{title}}
+            </li>
+            <li>
+                Image URL: {{image}}
+            </li>
+             <li>
+               Date of Depature: {{DOD}}
+            </li>
+             <li>
+               Date of Return: {{DOR}}
+            </li>
+            <li><input type='hidden' value = {{id}} name="id"/></li>
+            <li><button>Delete</button>
+            </form>
+        {{/allTrips}}
+    </ul>
+</body>
+</html>
