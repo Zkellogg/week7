@@ -3,10 +3,14 @@ let app = express();
 let mustacheExpressn = require("mustache-express");
 
 app.use(express.urlencoded());
+app.use(express.static("public"));
 
 app.engine("mustache", mustacheExpressn());
 app.set("views", "./views");
 app.set("view engine", "mustache");
+
+const newTripRout = require("./routes/trips");
+app.use("/newTrips", newTripRout);
 // ----- pathway code
 let trips = [
   {
