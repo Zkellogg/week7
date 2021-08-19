@@ -2,15 +2,25 @@ const { urlencoded } = require("express");
 const express = require("express");
 const app = express();
 const mustacheExpress = require("mustache-express");
+const session = require("express-session");
 const movieRouter = require("./routes/movies");
+const usersRouter = require("./routes/users");
 
 app.use(express.urlencoded());
 app.use(express.static("public"));
-
+app.use(
+  session({
+    secret: "THISISSECRETKEY",
+    saveUninitialized: true,
+    resave: true,
+  })
+);
 app.use("/movies", movieRouter);
+app.use("/users", usersRouter);
 
 global.movies = [
   {
+    userID: "john",
     id: 1,
     title: "Batman",
     description: "guy in black suit kicking villians",

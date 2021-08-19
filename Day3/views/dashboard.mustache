@@ -9,16 +9,6 @@
 <body>
 <h1>Welcome, {{username}}</h1>
 <div>
-<form method="GET" action="/users/login">
-<button>Sign in!</button>
-</form>
-</div>
-<div>
-<form method="GET" action="/users/register">
-<button>Sign up here!</button>
-</form>
-</div>
-<div>
 <form method="POST" action="/movies/add-movie">
 <input type="text" placeholder="Movie Title" name="title"/>
 <input type="text" placeholder="Enter Description" name="description"/>
@@ -35,7 +25,7 @@
 </div>
     <div>
     <ul>
-    {{#movies}}
+    {{#myMovies}}
     <form method="POST" action="/movies/delete-movie">
     <li>ID: {{id}}</li>
     <li>Title: {{title}}</li>
@@ -45,7 +35,7 @@
     <input type='hidden' value={{id}} name="id"/>
     <button>Delete</button>
     </form>
-    {{/movies}}
+    {{/myMovies}}
     </ul>
     </div>
 </body>

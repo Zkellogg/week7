@@ -5,22 +5,27 @@ global.moviesByGenre = [];
 global.movieDetails = [];
 
 router.post("/add-movie", (req, res) => {
+  const userID = req.session.username;
+
   const id = movies.length + 1;
   const { title } = req.body;
   const { description } = req.body;
   const { genre } = req.body;
   const { posterURL } = req.body;
 
-  let movie = {
-    id: id,
-    title: title,
-    description: description,
-    genre: genre,
-    posterURL: posterURL,
-  };
+  if (req.session) {
+    let movie = {
+      userID: userID,
+      id: id,
+      title: title,
+      description: description,
+      genre: genre,
+      posterURL: posterURL,
+    };
 
-  movies.push(movie);
-  res.redirect("/");
+    movies.push(movie);
+    res.redirect("/");
+  }
 });
 
 router.post("/delete-movie", (req, res) => {

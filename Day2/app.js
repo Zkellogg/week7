@@ -1,16 +1,26 @@
 let express = require("express");
 let app = express();
 let mustacheExpressn = require("mustache-express");
+let session = require();
+const usersRouter = require("../Day3/routes/users");
+const newTripRout = require("./routes/trips");
 
 app.use(express.urlencoded());
 app.use(express.static("public"));
+app.use("/newTrips", newTripRout);
+app.use("/users", usersRouter);
+app.use(
+  session({
+    secret: "THISISSECRETKEY",
+    saveUninitialized: true,
+    resave: true,
+  })
+);
 
 app.engine("mustache", mustacheExpressn());
 app.set("views", "./views");
 app.set("view engine", "mustache");
 
-const newTripRout = require("./routes/trips");
-app.use("/newTrips", newTripRout);
 // ----- pathway code
 let trips = [
   {
